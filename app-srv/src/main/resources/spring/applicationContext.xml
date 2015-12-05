@@ -1,0 +1,70 @@
+<beans	xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:context="http://www.springframework.org/schema/context"
+		xmlns:tx="http://www.springframework.org/schema/tx"
+		xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd">
+ 
+	<context:component-scan base-package="com.mmb.boar.srv.*" />
+ 
+	<!--
+		Instruct Spring to perform declarative transaction management
+		automatically on annotated classes.
+	-->	
+	<tx:annotation-driven transaction-manager="transactionManager" />  
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>  
+
+	<!-- =============== MyBATIS beans configuration ================== -->
+	<bean id="podcastDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	   <property name="sqlSessionFactory" ref="sqlSessionFactory"/>    
+	   <property name="mapperInterface" value="com.mmb.boar.srv.dao.PodcastDao" />
+	</bean>
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	    <property name="dataSource" ref="dataSource" />
+	    <property name="configLocation" value="classpath:config/mybatisV3.xml"/>
+	</bean>
+	
+    <bean id="podcastRestService" class="com.mmb.boar.srv.service.PodcastRestService" >
+    	<property name="podcastDao" ref="podcastDao"/>
+    </bean>
+
+	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean" scope="singleton">
+		<property name="jndiName" value="java:comp/env/jdbc/restDemoDB" />
+		<property name="resourceRef" value="true" />
+	</bean>
+
+	<tx:annotation-driven transaction-manager="transactionManagerMS" />
+	<bean id="transactionManagerMS"
+		  class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSourceMS"/>
+	</bean>
+
+	<bean id="webuserDao2" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="sqlSessionFactory" ref="sqlSessionFactoryMS"/>
+		<property name="mapperInterface" value="com.mmb.boar.srv.dao.WebuserDao" />
+	</bean>
+
+	<bean id="webuserRestService" class="com.mmb.boar.srv.service.WebuserRestService" >
+		<property name="webuserdao" ref="webuserDao2"/>
+	</bean>
+
+	<bean id="sqlSessionFactoryMS" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSourceMS" />
+		<property name="configLocation" value="classpath:config/mybatisMS.xml"/>
+	</bean>
+
+	<bean id="dataSourceMS" class="org.springframework.jndi.JndiObjectFactoryBean" scope="singleton">
+		<property name="jndiName" value="java:comp/env/jdbc/restDemoMSSQL" />
+		<property name="resourceRef" value="true" />
+	</bean>
+
+</beans>

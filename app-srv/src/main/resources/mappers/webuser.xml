@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mmb.boar.srv.dao.WebuserDao" >
+  <resultMap id="BaseResultMap" type="com.mmb.boar.srv.entities.Webuser" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="UserName" property="username" jdbcType="VARCHAR" />
+    <result column="PassWorld" property="passworld" jdbcType="VARCHAR" />
+    <result column="ReName" property="rename" jdbcType="VARCHAR" />
+    <result column="Sex" property="sex" jdbcType="VARCHAR" />
+    <result column="IdCard" property="idcard" jdbcType="VARCHAR" />
+    <result column="UserTel" property="usertel" jdbcType="VARCHAR" />
+    <result column="SafeId" property="safeid" jdbcType="VARCHAR" />
+    <result column="Question" property="question" jdbcType="VARCHAR" />
+    <result column="Answer" property="answer" jdbcType="VARCHAR" />
+    <result column="Email" property="email" jdbcType="VARCHAR" />
+    <result column="IsMail" property="ismail" jdbcType="VARCHAR" />
+    <result column="Extend" property="extend" jdbcType="VARCHAR" />
+    <result column="RegTime" property="regtime" jdbcType="TIMESTAMP" />
+    <result column="LastTime" property="lasttime" jdbcType="TIMESTAMP" />
+    <result column="RegIP" property="regip" jdbcType="VARCHAR" />
+    <result column="LastIp" property="lastip" jdbcType="VARCHAR" />
+    <result column="NickName" property="nickname" jdbcType="VARCHAR" />
+    <result column="IsVip" property="isvip" jdbcType="INTEGER" />
+    <result column="MaoPoint" property="maopoint" jdbcType="INTEGER" />
+    <result column="MaoDou" property="maodou" jdbcType="INTEGER" />
+    <result column="CroPoint" property="cropoint" jdbcType="INTEGER" />
+    <result column="GloryPoint" property="glorypoint" jdbcType="INTEGER" />
+    <result column="CroGame" property="crogame" jdbcType="INTEGER" />
+    <result column="CroServer" property="croserver" jdbcType="VARCHAR" />
+    <result column="IsGame" property="isgame" jdbcType="INTEGER" />
+    <result column="IsAdmin" property="isadmin" jdbcType="INTEGER" />
+    <result column="ServiceGood" property="servicegood" jdbcType="INTEGER" />
+    <result column="ChangeVip" property="changevip" jdbcType="INTEGER" />
+    <result column="CardCode" property="cardcode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, UserName, PassWorld, ReName, Sex, IdCard, UserTel, SafeId, Question, Answer, 
+    Email, IsMail, Extend, RegTime, LastTime, RegIP, LastIp, NickName, IsVip, MaoPoint, 
+    MaoDou, CroPoint, GloryPoint, CroGame, CroServer, IsGame, IsAdmin, ServiceGood, ChangeVip, 
+    CardCode
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from WebUser
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from WebUser
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mmb.boar.srv.entities.Webuser" >
+    insert into WebUser (Id, UserName, PassWorld, 
+      ReName, Sex, IdCard, 
+      UserTel, SafeId, Question, 
+      Answer, Email, IsMail, 
+      Extend, RegTime, LastTime, 
+      RegIP, LastIp, NickName, 
+      IsVip, MaoPoint, MaoDou, 
+      CroPoint, GloryPoint, CroGame, 
+      CroServer, IsGame, IsAdmin, 
+      ServiceGood, ChangeVip, CardCode
+      )
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{passworld,jdbcType=VARCHAR}, 
+      #{rename,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{idcard,jdbcType=VARCHAR}, 
+      #{usertel,jdbcType=VARCHAR}, #{safeid,jdbcType=VARCHAR}, #{question,jdbcType=VARCHAR}, 
+      #{answer,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{ismail,jdbcType=VARCHAR}, 
+      #{extend,jdbcType=VARCHAR}, #{regtime,jdbcType=TIMESTAMP}, #{lasttime,jdbcType=TIMESTAMP}, 
+      #{regip,jdbcType=VARCHAR}, #{lastip,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, 
+      #{isvip,jdbcType=INTEGER}, #{maopoint,jdbcType=INTEGER}, #{maodou,jdbcType=INTEGER}, 
+      #{cropoint,jdbcType=INTEGER}, #{glorypoint,jdbcType=INTEGER}, #{crogame,jdbcType=INTEGER}, 
+      #{croserver,jdbcType=VARCHAR}, #{isgame,jdbcType=INTEGER}, #{isadmin,jdbcType=INTEGER}, 
+      #{servicegood,jdbcType=INTEGER}, #{changevip,jdbcType=INTEGER}, #{cardcode,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mmb.boar.srv.entities.Webuser" >
+    insert into WebUser
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="username != null" >
+        UserName,
+      </if>
+      <if test="passworld != null" >
+        PassWorld,
+      </if>
+      <if test="rename != null" >
+        ReName,
+      </if>
+      <if test="sex != null" >
+        Sex,
+      </if>
+      <if test="idcard != null" >
+        IdCard,
+      </if>
+      <if test="usertel != null" >
+        UserTel,
+      </if>
+      <if test="safeid != null" >
+        SafeId,
+      </if>
+      <if test="question != null" >
+        Question,
+      </if>
+      <if test="answer != null" >
+        Answer,
+      </if>
+      <if test="email != null" >
+        Email,
+      </if>
+      <if test="ismail != null" >
+        IsMail,
+      </if>
+      <if test="extend != null" >
+        Extend,
+      </if>
+      <if test="regtime != null" >
+        RegTime,
+      </if>
+      <if test="lasttime != null" >
+        LastTime,
+      </if>
+      <if test="regip != null" >
+        RegIP,
+      </if>
+      <if test="lastip != null" >
+        LastIp,
+      </if>
+      <if test="nickname != null" >
+        NickName,
+      </if>
+      <if test="isvip != null" >
+        IsVip,
+      </if>
+      <if test="maopoint != null" >
+        MaoPoint,
+      </if>
+      <if test="maodou != null" >
+        MaoDou,
+      </if>
+      <if test="cropoint != null" >
+        CroPoint,
+      </if>
+      <if test="glorypoint != null" >
+        GloryPoint,
+      </if>
+      <if test="crogame != null" >
+        CroGame,
+      </if>
+      <if test="croserver != null" >
+        CroServer,
+      </if>
+      <if test="isgame != null" >
+        IsGame,
+      </if>
+      <if test="isadmin != null" >
+        IsAdmin,
+      </if>
+      <if test="servicegood != null" >
+        ServiceGood,
+      </if>
+      <if test="changevip != null" >
+        ChangeVip,
+      </if>
+      <if test="cardcode != null" >
+        CardCode,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="passworld != null" >
+        #{passworld,jdbcType=VARCHAR},
+      </if>
+      <if test="rename != null" >
+        #{rename,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null" >
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="usertel != null" >
+        #{usertel,jdbcType=VARCHAR},
+      </if>
+      <if test="safeid != null" >
+        #{safeid,jdbcType=VARCHAR},
+      </if>
+      <if test="question != null" >
+        #{question,jdbcType=VARCHAR},
+      </if>
+      <if test="answer != null" >
+        #{answer,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="ismail != null" >
+        #{ismail,jdbcType=VARCHAR},
+      </if>
+      <if test="extend != null" >
+        #{extend,jdbcType=VARCHAR},
+      </if>
+      <if test="regtime != null" >
+        #{regtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lasttime != null" >
+        #{lasttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regip != null" >
+        #{regip,jdbcType=VARCHAR},
+      </if>
+      <if test="lastip != null" >
+        #{lastip,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null" >
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="isvip != null" >
+        #{isvip,jdbcType=INTEGER},
+      </if>
+      <if test="maopoint != null" >
+        #{maopoint,jdbcType=INTEGER},
+      </if>
+      <if test="maodou != null" >
+        #{maodou,jdbcType=INTEGER},
+      </if>
+      <if test="cropoint != null" >
+        #{cropoint,jdbcType=INTEGER},
+      </if>
+      <if test="glorypoint != null" >
+        #{glorypoint,jdbcType=INTEGER},
+      </if>
+      <if test="crogame != null" >
+        #{crogame,jdbcType=INTEGER},
+      </if>
+      <if test="croserver != null" >
+        #{croserver,jdbcType=VARCHAR},
+      </if>
+      <if test="isgame != null" >
+        #{isgame,jdbcType=INTEGER},
+      </if>
+      <if test="isadmin != null" >
+        #{isadmin,jdbcType=INTEGER},
+      </if>
+      <if test="servicegood != null" >
+        #{servicegood,jdbcType=INTEGER},
+      </if>
+      <if test="changevip != null" >
+        #{changevip,jdbcType=INTEGER},
+      </if>
+      <if test="cardcode != null" >
+        #{cardcode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mmb.boar.srv.entities.Webuser" >
+    update WebUser
+    <set >
+      <if test="username != null" >
+        UserName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="passworld != null" >
+        PassWorld = #{passworld,jdbcType=VARCHAR},
+      </if>
+      <if test="rename != null" >
+        ReName = #{rename,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        Sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null" >
+        IdCard = #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="usertel != null" >
+        UserTel = #{usertel,jdbcType=VARCHAR},
+      </if>
+      <if test="safeid != null" >
+        SafeId = #{safeid,jdbcType=VARCHAR},
+      </if>
+      <if test="question != null" >
+        Question = #{question,jdbcType=VARCHAR},
+      </if>
+      <if test="answer != null" >
+        Answer = #{answer,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        Email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="ismail != null" >
+        IsMail = #{ismail,jdbcType=VARCHAR},
+      </if>
+      <if test="extend != null" >
+        Extend = #{extend,jdbcType=VARCHAR},
+      </if>
+      <if test="regtime != null" >
+        RegTime = #{regtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lasttime != null" >
+        LastTime = #{lasttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regip != null" >
+        RegIP = #{regip,jdbcType=VARCHAR},
+      </if>
+      <if test="lastip != null" >
+        LastIp = #{lastip,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null" >
+        NickName = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="isvip != null" >
+        IsVip = #{isvip,jdbcType=INTEGER},
+      </if>
+      <if test="maopoint != null" >
+        MaoPoint = #{maopoint,jdbcType=INTEGER},
+      </if>
+      <if test="maodou != null" >
+        MaoDou = #{maodou,jdbcType=INTEGER},
+      </if>
+      <if test="cropoint != null" >
+        CroPoint = #{cropoint,jdbcType=INTEGER},
+      </if>
+      <if test="glorypoint != null" >
+        GloryPoint = #{glorypoint,jdbcType=INTEGER},
+      </if>
+      <if test="crogame != null" >
+        CroGame = #{crogame,jdbcType=INTEGER},
+      </if>
+      <if test="croserver != null" >
+        CroServer = #{croserver,jdbcType=VARCHAR},
+      </if>
+      <if test="isgame != null" >
+        IsGame = #{isgame,jdbcType=INTEGER},
+      </if>
+      <if test="isadmin != null" >
+        IsAdmin = #{isadmin,jdbcType=INTEGER},
+      </if>
+      <if test="servicegood != null" >
+        ServiceGood = #{servicegood,jdbcType=INTEGER},
+      </if>
+      <if test="changevip != null" >
+        ChangeVip = #{changevip,jdbcType=INTEGER},
+      </if>
+      <if test="cardcode != null" >
+        CardCode = #{cardcode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mmb.boar.srv.entities.Webuser" >
+    update WebUser
+    set UserName = #{username,jdbcType=VARCHAR},
+      PassWorld = #{passworld,jdbcType=VARCHAR},
+      ReName = #{rename,jdbcType=VARCHAR},
+      Sex = #{sex,jdbcType=VARCHAR},
+      IdCard = #{idcard,jdbcType=VARCHAR},
+      UserTel = #{usertel,jdbcType=VARCHAR},
+      SafeId = #{safeid,jdbcType=VARCHAR},
+      Question = #{question,jdbcType=VARCHAR},
+      Answer = #{answer,jdbcType=VARCHAR},
+      Email = #{email,jdbcType=VARCHAR},
+      IsMail = #{ismail,jdbcType=VARCHAR},
+      Extend = #{extend,jdbcType=VARCHAR},
+      RegTime = #{regtime,jdbcType=TIMESTAMP},
+      LastTime = #{lasttime,jdbcType=TIMESTAMP},
+      RegIP = #{regip,jdbcType=VARCHAR},
+      LastIp = #{lastip,jdbcType=VARCHAR},
+      NickName = #{nickname,jdbcType=VARCHAR},
+      IsVip = #{isvip,jdbcType=INTEGER},
+      MaoPoint = #{maopoint,jdbcType=INTEGER},
+      MaoDou = #{maodou,jdbcType=INTEGER},
+      CroPoint = #{cropoint,jdbcType=INTEGER},
+      GloryPoint = #{glorypoint,jdbcType=INTEGER},
+      CroGame = #{crogame,jdbcType=INTEGER},
+      CroServer = #{croserver,jdbcType=VARCHAR},
+      IsGame = #{isgame,jdbcType=INTEGER},
+      IsAdmin = #{isadmin,jdbcType=INTEGER},
+      ServiceGood = #{servicegood,jdbcType=INTEGER},
+      ChangeVip = #{changevip,jdbcType=INTEGER},
+      CardCode = #{cardcode,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
